@@ -1,0 +1,33 @@
+<h1>Listing pages</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Text</th>
+    <th>Type</th>
+    <th>Sorting</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pages.each do |page| %>
+  <tr>
+    <td><%= page.name %></td>
+    <td><%= page.text %></td>
+    <td><%= page.type.name %></td>
+    <td><%= page.sorting %></td>
+    <td><%= link_to 'Show', page %></td>
+    <% if can? :update, @pages %>
+      <td><%= link_to 'Edit', edit_page_path(page) %></td>
+    <% end %>
+    <% if can? :destroy, @pages %>
+      <td><%= link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Page', new_page_path %>
